@@ -19,7 +19,7 @@ requirements:
   host:
     - pdm-pep517
     - pip
-    - python >=3.11
+    - python {{ python_min }}
   run:
     - fastapi >=0.136.1
     - geojson-pydantic >=1.1.2,<3.0
@@ -30,7 +30,7 @@ requirements:
     - rio-tiler >=9.0,<10.0
     - morecantile
     - simplejson
-    - python >=3.11
+    - python >={{ python_min }}
 test:
   imports:
     - titiler
@@ -39,6 +39,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/developmentseed/titiler
