@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/titiler_core-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/titiler_core-{{ version }}.tar.gz
   sha256: 704d8801affc5f70a24fb19b9c378489b3e8d7b3efd77ecf6544a04ee882a0e9
 
 build:
