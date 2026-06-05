@@ -1,4 +1,4 @@
-{% set name = "titiler-core" %}
+{% set name = "titiler" %}
 {% set version = "2.0.4" %}
 {% set python_min = "3.11" %}
 
@@ -8,39 +8,190 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/titiler_core-{{ version }}.tar.gz
-  sha256: 704d8801affc5f70a24fb19b9c378489b3e8d7b3efd77ecf6544a04ee882a0e9
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}_core-{{ version }}.tar.gz
+    sha256: 704d8801affc5f70a24fb19b9c378489b3e8d7b3efd77ecf6544a04ee882a0e9
+    folder: titiler_core
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}_xarray-{{ version }}.tar.gz
+    sha256: ee6a3590ba5ad02a1d62b554d86871633aecccae2fcfd98e405954cb4475967f
+    folder: titiler_xarray
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}_extensions-{{ version }}.tar.gz
+    sha256: bec17813849f6c6df9632be2b6190361278fd9ca5ec2c9e779118b58f76c702b
+    folder: titiler_extensions
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}_mosaic-{{ version }}.tar.gz
+    sha256: 46a1d9389e6e00962fd2c3d0d2c406c3809d03f684e8a1e5c1edfa36ba8e4030
+    folder: titiler_mosaic
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}_application-{{ version }}.tar.gz
+    sha256: 2447b1fb0b47c9534fe2f22a649041bdd3e7dadb040242762c9fedd33a3f71de
+    folder: titiler_application
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
-requirements:
-  host:
-    - hatchling
-    - pip
-    - python {{ python_min }}
-  run:
-    - fastapi >=0.136.1
-    - geojson-pydantic >=1.1.2,<3.0
-    - jinja2 >=2.11.2,<4.0.0
-    - numpy
-    - pydantic ~=2.0
-    - rasterio
-    - rio-tiler >=9.0,<10.0
-    - morecantile
-    - simplejson
-    - python >={{ python_min }}
-test:
-  imports:
-    - titiler
-    - titiler.core
-  commands:
-    - pip check
-  requires:
-    - pip
-    - python {{ python_min }}
+outputs:
+  - name: titiler-core
+    version: {{ version }}
+    build:
+      noarch: python
+      script: |
+        cd titiler_core
+        python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index
+    requirements:
+      host:
+        - hatchling
+        - pip
+        - python {{ python_min }}
+      run:
+        - fastapi >=0.136.1
+        - geojson-pydantic >=1.1.2,<3.0
+        - jinja2 >=2.11.2,<4.0.0
+        - numpy
+        - pydantic ~=2.0
+        - rasterio
+        - rio-tiler >=9.0,<10.0
+        - morecantile
+        - simplejson
+        - python >={{ python_min }}
+    test:
+      imports:
+        - titiler
+        - titiler.core
+      commands:
+        - pip check
+      requires:
+        - pip
+        - python {{ python_min }}
+
+  - name: titiler-xarray
+    version: {{ version }}
+    build:
+      noarch: python
+      script: |
+        cd titiler_xarray
+        python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index
+    requirements:
+      host:
+        - hatchling
+        - pip
+        - python {{ python_min }}
+      run:
+        - titiler-core
+        - xarray
+        - rioxarray
+        - obstore
+        - zarr >=3.1,<4.0
+        - starlette-cramjam >=0.4,<1.0
+        - pydantic-settings ~=2.0
+        - python >={{ python_min }}
+      run_constrained:
+        - titiler-core ={{ version }}
+    test:
+      imports:
+        - titiler
+        - titiler.xarray
+      commands:
+        - pip check
+      requires:
+        - pip
+        - python {{ python_min }}
+
+  - name: titiler-extensions
+    version: {{ version }}
+    build:
+      noarch: python
+      script: |
+        cd titiler_extensions
+        python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index
+    requirements:
+      host:
+        - hatchling
+        - pip
+        - python {{ python_min }}
+      run:
+        - titiler-core
+        - python >={{ python_min }}
+      run_constrained:
+        - titiler-core ={{ version }}
+    test:
+      imports:
+        - titiler
+        - titiler.extensions
+      commands:
+        - pip check
+      requires:
+        - pip
+        - python {{ python_min }}
+
+  - name: titiler-mosaic
+    version: {{ version }}
+    build:
+      noarch: python
+      script: |
+        cd titiler_mosaic
+        python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index
+    requirements:
+      host:
+        - hatchling
+        - pip
+        - python {{ python_min }}
+      run:
+        - titiler-core
+        # TODO Package this on conda-forge
+        # This is an extra dependency on PyPi
+        # Should we add it here or add yet another output titiler-mosaic-json?
+        # - cogeo-mosaic
+        - python >={{ python_min }}
+      run_constrained:
+        - titiler-core ={{ version }}
+    test:
+      imports:
+        - titiler
+        - titiler.mosaic
+      commands:
+        - pip check
+      requires:
+        - pip
+        - python {{ python_min }}
+
+  - name: titiler-application
+    version: {{ version }}
+    build:
+      noarch: python
+      script: |
+        cd titiler_application
+        python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index
+    requirements:
+      host:
+        - hatchling
+        - pip
+        - python {{ python_min }}
+      run:
+        - titiler-core
+        - titiler-xarray
+        - titiler-extensions
+        - titiler-mosaic
+        - starlette-cramjam
+        - pydantic-settings ~=2.0
+        # TODO Missing extras that are defined for PyPi
+        # "titiler-core[telemetry]==2.0.4",  # x-release-please-version
+        # "titiler-extensions[cogeo,stac]==2.0.4",  # x-release-please-version
+        # "titiler-mosaic[mosaicjson]==2.0.4",  # x-release-please-version
+        # "starlette-cramjam>=0.4,<1.0",
+        - python >={{ python_min }}
+      run_constrained:
+        - titiler-core ={{ version }}
+        - titiler-xarray ={{ version }}
+        - titiler-extensions ={{ version }}
+        - titiler-mosaic ={{ version }}
+    test:
+      imports:
+        - titiler
+        - titiler.application
+      commands:
+        - pip check
+      requires:
+        - pip
+        - python {{ python_min }}
 
 about:
   home: https://github.com/developmentseed/titiler
