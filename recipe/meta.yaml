@@ -172,12 +172,19 @@ outputs:
         - titiler-mosaic
         - starlette-cramjam
         - pydantic-settings ~=2.0
-        # TODO Missing extras that are defined for PyPi
-        # "titiler-core[telemetry]==2.0.4",  # x-release-please-version
-        # "titiler-extensions[cogeo,stac]==2.0.4",  # x-release-please-version
-        # "titiler-mosaic[mosaicjson]==2.0.4",  # x-release-please-version
-        # "starlette-cramjam>=0.4,<1.0",
+        - starlette-cramjam >=0.4,<1.0
         - python >={{ python_min }}
+        # titiler metapackage depends on titiler-core[telemetry] extra
+        - opentelemetry-api
+        - opentelemetry-sdk
+        - opentelemetry-instrumentation-fastapi
+        - opentelemetry-instrumentation-logging
+        - opentelemetry-exporter-otlp
+        # titiler metapackage depends on titiler-extensions[cogeo,stac]
+        - rio-stac >=0.12,<0.13
+        - rio-cogeo >=7.0,<8.0
+        # titiler metapackage depends on titiler-mosaic[mosaicjson]
+        - cogeo-mosaic >=9.0,<10.0
       run_constrained:
         - titiler-core ={{ version }}
         - titiler-xarray ={{ version }}
