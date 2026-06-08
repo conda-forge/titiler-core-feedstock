@@ -1,5 +1,6 @@
 {% set name = "titiler-core" %}
-{% set version = "0.18.6" %}
+{% set version = "2.0.4" %}
+{% set python_min = "3.11" %}
 
 
 package:
@@ -7,31 +8,30 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/titiler.core-{{ version }}.tar.gz
-  sha256: 63d0c64b7dfdd0b9a09db275bcc771ac9c7b28717ec477e4257778002ff53cb6
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/titiler_core-{{ version }}.tar.gz
+  sha256: 704d8801affc5f70a24fb19b9c378489b3e8d7b3efd77ecf6544a04ee882a0e9
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
-    - pdm-pep517
+    - hatchling
     - pip
-    - python >=3.8
+    - python {{ python_min }}
   run:
-    - fastapi >=0.108.0
-    - geojson-pydantic >=1.0,<2.0
+    - fastapi >=0.136.1
+    - geojson-pydantic >=1.1.2,<3.0
     - jinja2 >=2.11.2,<4.0.0
     - numpy
-    - pydantic >=2.0,<3.dev0
+    - pydantic ~=2.0
     - rasterio
-    - rio-tiler >=6.3.0,<7.0
-    - morecantile >=5.0,<6.0
+    - rio-tiler >=9.0,<10.0
+    - morecantile
     - simplejson
-    - typing_extensions >=4.6.1
-    - python >=3.8
+    - python >={{ python_min }}
 test:
   imports:
     - titiler
@@ -40,6 +40,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/developmentseed/titiler
