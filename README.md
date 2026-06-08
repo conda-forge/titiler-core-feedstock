@@ -1,5 +1,5 @@
-About titiler-core-feedstock
-============================
+About titiler-feedstock
+=======================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/titiler-core-feedstock/blob/main/LICENSE.txt)
 
@@ -28,53 +28,57 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-titiler--application-green.svg)](https://anaconda.org/conda-forge/titiler-application) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/titiler-application.svg)](https://anaconda.org/conda-forge/titiler-application) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/titiler-application.svg)](https://anaconda.org/conda-forge/titiler-application) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/titiler-application.svg)](https://anaconda.org/conda-forge/titiler-application) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-titiler--core-green.svg)](https://anaconda.org/conda-forge/titiler-core) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/titiler-core.svg)](https://anaconda.org/conda-forge/titiler-core) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/titiler-core.svg)](https://anaconda.org/conda-forge/titiler-core) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/titiler-core.svg)](https://anaconda.org/conda-forge/titiler-core) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-titiler--extensions-green.svg)](https://anaconda.org/conda-forge/titiler-extensions) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/titiler-extensions.svg)](https://anaconda.org/conda-forge/titiler-extensions) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/titiler-extensions.svg)](https://anaconda.org/conda-forge/titiler-extensions) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/titiler-extensions.svg)](https://anaconda.org/conda-forge/titiler-extensions) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-titiler--mosaic-green.svg)](https://anaconda.org/conda-forge/titiler-mosaic) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/titiler-mosaic.svg)](https://anaconda.org/conda-forge/titiler-mosaic) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/titiler-mosaic.svg)](https://anaconda.org/conda-forge/titiler-mosaic) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/titiler-mosaic.svg)](https://anaconda.org/conda-forge/titiler-mosaic) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-titiler--xarray-green.svg)](https://anaconda.org/conda-forge/titiler-xarray) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/titiler-xarray.svg)](https://anaconda.org/conda-forge/titiler-xarray) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/titiler-xarray.svg)](https://anaconda.org/conda-forge/titiler-xarray) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/titiler-xarray.svg)](https://anaconda.org/conda-forge/titiler-xarray) |
 
-Installing titiler-core
-=======================
+Installing titiler
+==================
 
-Installing `titiler-core` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `titiler` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `titiler-core` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `titiler-application, titiler-core, titiler-extensions, titiler-mosaic, titiler-xarray` can be installed with `conda`:
 
 ```
-conda install titiler-core
-```
-
-or with `mamba`:
-
-```
-mamba install titiler-core
-```
-
-It is possible to list all of the versions of `titiler-core` available on your platform with `conda`:
-
-```
-conda search titiler-core --channel conda-forge
+conda install titiler-application titiler-core titiler-extensions titiler-mosaic titiler-xarray
 ```
 
 or with `mamba`:
 
 ```
-mamba search titiler-core --channel conda-forge
+mamba install titiler-application titiler-core titiler-extensions titiler-mosaic titiler-xarray
+```
+
+It is possible to list all of the versions of `titiler-application` available on your platform with `conda`:
+
+```
+conda search titiler-application --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search titiler-application --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search titiler-core --channel conda-forge
+mamba repoquery search titiler-application --channel conda-forge
 
-# List packages depending on `titiler-core`:
-mamba repoquery whoneeds titiler-core --channel conda-forge
+# List packages depending on `titiler-application`:
+mamba repoquery whoneeds titiler-application --channel conda-forge
 
-# List dependencies of `titiler-core`:
-mamba repoquery depends titiler-core --channel conda-forge
+# List dependencies of `titiler-application`:
+mamba repoquery depends titiler-application --channel conda-forge
 ```
 
 
@@ -119,17 +123,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating titiler-core-feedstock
-===============================
+Updating titiler-feedstock
+==========================
 
-If you would like to improve the titiler-core recipe or build a new
+If you would like to improve the titiler recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/titiler-core-feedstock are
+Note that all branches in the conda-forge/titiler-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
