@@ -1,5 +1,5 @@
 {% set name = "titiler" %}
-{% set version = "2.0.4" %}
+{% set version = "2.0.5" %}
 {% set python_min = "3.11" %}
 
 
@@ -9,19 +9,19 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-core/{{ name }}_core-{{ version }}.tar.gz
-    sha256: 704d8801affc5f70a24fb19b9c378489b3e8d7b3efd77ecf6544a04ee882a0e9
+    sha256: 68dc573e85890c7a21617defd554650a8a27edbec59b23758a861ccc397e46f9
     folder: titiler_core
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-xarray/{{ name }}_xarray-{{ version }}.tar.gz
-    sha256: ee6a3590ba5ad02a1d62b554d86871633aecccae2fcfd98e405954cb4475967f
+    sha256: 3184ef97d3644aa02b34f86b9e940eb133c42b44a0abb75c85e906e9602e51d9
     folder: titiler_xarray
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-extensions/{{ name }}_extensions-{{ version }}.tar.gz
-    sha256: bec17813849f6c6df9632be2b6190361278fd9ca5ec2c9e779118b58f76c702b
+    sha256: 3e0c0baafeebeb8d79c28e5d74116bd90c578b06fce0699de5433acdfde1ffa2
     folder: titiler_extensions
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-mosaic/{{ name }}_mosaic-{{ version }}.tar.gz
-    sha256: 46a1d9389e6e00962fd2c3d0d2c406c3809d03f684e8a1e5c1edfa36ba8e4030
+    sha256: cbed8daa83f31552d058657a97862a62d0f7d0592564312d6bd02b23e6f9d18a
     folder: titiler_mosaic
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-application/{{ name }}_application-{{ version }}.tar.gz
-    sha256: 2447b1fb0b47c9534fe2f22a649041bdd3e7dadb040242762c9fedd33a3f71de
+    sha256: d100507a888c7d920fb794bb117188684ff4d8181ac4aa5be011aa60a0f34f6c
     folder: titiler_application
 
 build:
