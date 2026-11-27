@@ -1,5 +1,5 @@
 {% set name = "titiler" %}
-{% set version = "2.2.1" %}
+{% set version = "2.4.1" %}
 {% set python_min = "3.11" %}
 
 
@@ -8,20 +8,20 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-core/{{ name }}_core-{{ version }}.tar.gz
-    sha256: 61bd6fe35e766795ec9acc2ad58351426802e8ee6d06925724d3084fc20a53ed
+  - url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}-core/{{ name }}_core-{{ version }}.tar.gz
+    sha256: bfc688f82bd3c93ca5a37fad32cbadcb337a7346d53b356db23bdc4f843ac786
     folder: titiler_core
-  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-xarray/{{ name }}_xarray-{{ version }}.tar.gz
-    sha256: f7d11a38bcc3cbe68377c93d2e28768838f6a03e7abd3ce772e45b75d6d94315
+  - url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}-xarray/{{ name }}_xarray-{{ version }}.tar.gz
+    sha256: b4f4e44d337081dbdb4f303178363e5bbb384928b142fca4f082181bcd8b75ca
     folder: titiler_xarray
-  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-extensions/{{ name }}_extensions-{{ version }}.tar.gz
-    sha256: cb2e7f100299625e73b97e00d5da54914bcda56c897c1d70df46e222db38512e
+  - url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}-extensions/{{ name }}_extensions-{{ version }}.tar.gz
+    sha256: c775ba5eda1178c35d70de881ddb515f788f244115b417f232ab57b4abd6c4a8
     folder: titiler_extensions
-  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-mosaic/{{ name }}_mosaic-{{ version }}.tar.gz
-    sha256: fccf7f502585b8584dd900e4db92f46be8594aea8cc47cfa56309b0c919eb3ec
+  - url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}-mosaic/{{ name }}_mosaic-{{ version }}.tar.gz
+    sha256: 9929d0d0c42f40957017613cbc2cc6659a360280aff6584dbe65b7f46e4a7180
     folder: titiler_mosaic
-  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}-application/{{ name }}_application-{{ version }}.tar.gz
-    sha256: 13425c9a472bbf7b017b6739a86f07d1c680e0a178b7f75be5d8044ec3105878
+  - url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}-application/{{ name }}_application-{{ version }}.tar.gz
+    sha256: 97c4fc5b57f9b38398669f7496cb478a559839fda241568f9609303468427363
     folder: titiler_application
 
 build:
